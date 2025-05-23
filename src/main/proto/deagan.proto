@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+package org.spcgreenville.deagan;
+
+option java_package = "org.spcgreenville.deagan";
+option java_outer_classname = "Proto";
+
+message DeaganRequest {
+  optional bool heartbeat = 1;
+  optional int32 relay_number = 2;
+  optional bool latch = 3;
+  optional bool chime = 4;
+}
+
+message DeaganResponse {
+  optional bool heartbeat = 1;
+  optional string relay_one_status = 2;
+  optional string realy_two_status = 3;
+}
+
