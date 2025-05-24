@@ -30,6 +30,7 @@ public class ProxyTest {
     try {
       proxyThread = new Thread(proxy);
       proxyThread.setDaemon(false);
+      proxyThread.setName("ProxyThread");
       proxyThread.start();
 
       Socket connectionTester;

@@ -21,7 +21,7 @@ public class PipeThread extends Thread {
 
   public PipeThread(Socket socket, PipeThreadManager pipeThreadManager, WriterThread writerThread) {
     setDaemon(true);
-    setName(STR."PipeThread-\{pipeThreadManager.getThreadIndex()}");
+    setName("PipeThread-" + pipeThreadManager.getThreadIndex());
     this.socket = socket;
     this.pipeThreadManager = pipeThreadManager;
     this.writerThread = writerThread;
@@ -59,7 +59,7 @@ public class PipeThread extends Thread {
 
   public boolean write(int i) {
     try {
-      logger.fine(STR."Writing \{i} to \{getName()}");
+      logger.fine("Writing " + i + " to " + getName());
       outputStream.write(i);
       return true;
     } catch (IOException ioe) {
@@ -72,9 +72,9 @@ public class PipeThread extends Thread {
     while (!shouldStop.get()) {
       try {
         int i = inputStream.read();
-        logger.fine(STR."Read \{i} from \{getName()}");
+        logger.fine("Read " + i + " from " + getName());
         if (i == -1) {
-          logger.warning(STR."Input stream closed for pipe \{getName()}");
+          logger.warning("Input stream closed for pipe " + getName());
           pipeThreadManager.removePipeThread(this);
           return;
         }

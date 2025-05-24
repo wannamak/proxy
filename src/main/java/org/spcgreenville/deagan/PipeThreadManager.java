@@ -51,12 +51,12 @@ public class PipeThreadManager {
       pipeThreads.add(pipeThread);
     }
     pipeThread.start();
-    logger.info(STR."Started pipe thread \{pipeThread}");
+    logger.info("Started pipe thread " + pipeThread.getName());
   }
 
   public void removePipeThread(PipeThread pipeThread) {
     synchronized (pipeThreads) {
-      logger.info(STR."Removing pipe thread \{pipeThread.getName()}");
+      logger.info("Removing pipe thread " + pipeThread.getName());
       if (!pipeThreads.remove(pipeThread)) {
         throw new RuntimeException("Removing a thread that isn't there");
       }

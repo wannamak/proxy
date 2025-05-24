@@ -24,9 +24,9 @@
   </target>
 
   <target name="build" depends="build_proto">
-    <mkdir dir="${bin}" />
-    <javac srcdir="src/main/java" includes="**" destdir="${bin}/production/proxy" includeantruntime="false" debug="true" source="21" >
-      <compilerarg value="--enable-preview" />
+    <mkdir dir="${bin}/production/proxy" />
+    <javac srcdir="src/main/java" includes="**" destdir="${bin}/production/proxy"
+           includeantruntime="false" debug="true" >
       <classpath>
         <path refid="main-classpath"/>
       </classpath>
@@ -34,14 +34,16 @@
   </target>
 
   <target name="test" depends="build">
-    <mkdir dir="${bin}" />
-    <javac srcdir="src/main/javatests" includes="**" destdir="${bin}/test/proxy" includeantruntime="false" debug="true" >
+    <mkdir dir="${bin}/test/proxy" />
+    <javac srcdir="src/main/javatests" includes="**" destdir="${bin}/test/proxy"
+           includeantruntime="false" debug="true" >
       <classpath>
         <path refid="main-classpath"/>
         <path refid="test-classpath"/>
       </classpath>
     </javac>
-    <junit printsummary="on" haltonfailure="yes" fork="true">
+    <junit printsummary="on" haltonfailure="yes" fork="false" showoutput="true">
+      <sysproperty key="java.util.logging.config.file" value="props/logging.properties"/>
       <formatter type="plain" usefile="false" />
       <classpath>
         <path refid="main-classpath"/>

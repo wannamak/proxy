@@ -58,7 +58,7 @@ public class WriterThread extends Thread {
         return;  // thread is stopping
       }
       QueueEntry entry = outboundQueue.pop();
-      logger.fine(STR."Got entry \{entry.i} from \{entry.exceptThisThread}");
+      logger.fine("Got entry " + entry.i + " from " + entry.exceptThisThread);
       synchronized (pipeThreads) {
         List<PipeThread> toRemove = new ArrayList<>();
         for (PipeThread pipeThread : pipeThreads) {
