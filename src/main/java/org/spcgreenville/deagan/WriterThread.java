@@ -33,7 +33,7 @@ public class WriterThread extends Thread {
 
   public void write(int i, PipeThread exceptThisThread) {
     synchronized (outboundQueue) {
-      outboundQueue.push(new QueueEntry(i, exceptThisThread));
+      outboundQueue.addLast(new QueueEntry(i, exceptThisThread));
       outboundQueue.notify();
     }
   }
@@ -57,7 +57,7 @@ public class WriterThread extends Thread {
       if (outboundQueue.isEmpty()) {
         return;  // thread is stopping
       }
-      QueueEntry entry = outboundQueue.pop();
+      QueueEntry entry = outboundQueue.removeFirst();
       logger.fine("Got entry " + entry.i + " from " + entry.exceptThisThread);
       synchronized (pipeThreads) {
         List<PipeThread> toRemove = new ArrayList<>();
