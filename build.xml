@@ -43,7 +43,7 @@
       </classpath>
     </javac>
     <junit printsummary="on" haltonfailure="yes" fork="false" showoutput="true">
-      <sysproperty key="java.util.logging.config.file" value="props/logging.properties"/>
+      <sysproperty key="java.util.logging.config.file" value="logging.properties"/>
       <formatter type="plain" usefile="false" />
       <classpath>
         <path refid="main-classpath"/>
@@ -61,7 +61,7 @@
 
   <target name="run" depends="build">
     <java classname="org.spcgreenville.deagan.Proxy" fork="true">
-      <sysproperty key="java.util.logging.config.file" value="props/local.logging.properties"/>
+      <sysproperty key="java.util.logging.config.file" value="local.logging.properties"/>
       <classpath>
         <path refid="main-classpath"/>
       </classpath>
